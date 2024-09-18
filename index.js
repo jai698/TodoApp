@@ -8,8 +8,13 @@ const JWT_SECRET = "dev";
 const PORT = 3001;
 const bcrypt = require("bcrypt");
 const {z} = require("zod");
+app.use(express.static(__dirname + '/public'));
 
 mongoose.connect("mongodb+srv://jai:kanishk49@cluster0.mdaxodf.mongodb.net/Todo");
+
+app.get('/',function(req,res){
+    res.sendFile(__dirname+"/public/index.html")
+})
 
 app.post('/signup',async function(req,res){
 
@@ -17,7 +22,7 @@ app.post('/signup',async function(req,res){
     const reqBody = z.object({
         name:z.string().max(20),
         email:z.string().email().min(5).max(20),
-        password:z.string().password().max(20),
+        password:z.string().max(20),
     }
     );
 

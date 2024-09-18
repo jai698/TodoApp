@@ -1,0 +1,142 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Make it darker to contrast text */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out;
+}
+
+/* Section Layout */
+.sign-up, .login, .create-Todo, .display-todo {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    transition: background 0.3s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+}
+
+button:hover {
+    background-color: #f06;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Text styles */
+.t1 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Display Todo */
+#populate {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    min-height: 50px;
+    overflow-y: auto;
+}
+
+/* Hover animations for input and buttons */
+input[type="text"]:hover, input[type="password"]:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+button:hover {
+    background-color: #6C63FF;
+    transform: scale(1.05);
+}
+
+/* Button-specific animations */
+#b1:hover {
+    background: linear-gradient(45deg, #f06, #f79d00);
+}
+
+#b2:hover {
+    background: linear-gradient(45deg, #4a90e2, #50C878);
+}
+
+#b3:hover {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+
+#b4:hover {
+    background: linear-gradient(45deg, #56CCF2, #2F80ED);
+}
+
+/* Responsive for smaller screens */
+@media(max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todoApp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+<body>
+    
+    <div class="container">
+        <!-- ---------------------------sign up ----------------------------------->
+         <div class="sign-up">
+            <p>Enter name</p>
+            <input type="text" id="sign-up-input">
+            <p>Enter email</p>
+            <input type="text" id="sign-up-email">
+            <p>Enter Password</p>
+            <input type="text" id="sign-up-password">
+            <button id="b1" onclick="signup()">signup</button>
+         </div>
+         <!-- -------------------------------login -------------------------------------------->
+          <div class="login">
+            <p>Enter email</p>
+            <input type="text" id="login-email">
+            <p>Enter Password</p>
+            <input type="text" id="login-password">
+            <button id="b2" onclick="login()">login</button>
+          </div>
+          <!-- ----------------------------------- create todo ------------------------------------->
+           <div class="create-Todo">
+            <div class="t1">create a todo:</div>
+            <input type="text" id="entry-in-todo">
+            <button id="b3" onclick="createTodo()">create</button>
+           </div>
+           <!-- -----------------------------------display todo ----------------------------------------- -->
+            <div class="display-todo">
+                <button id="b4" onclick="showTodo()">show todo</button>
+                <div id="populate"></div>
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
