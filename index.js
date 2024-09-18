@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const { default: mongoose } = require("mongoose");
 const JWT_SECRET = "dev";
 const PORT = 3001;
+const bcrypt = require("bcrypt");
 
 mongoose.connect("mongodb+srv://jai:kanishk49@cluster0.mdaxodf.mongodb.net/Todo");
 
@@ -13,11 +14,12 @@ app.post('/signup',async function(req,res){
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
+    const hashedPassword = await bcrypt.hash(password,3);
 
     await UserModel.create({
         name: name,
         email: email,
-        password: password,
+        password: hashedPassword,
     })
     res.json({
         message: "You are signed up"
@@ -28,12 +30,12 @@ app.post('/login',async function(req,res){
     const email = req.body.email;
     const password = req.body.password;
 
-    const response = await UserModel.findOne({
+    const response = await UserModel.findOne({ //finds entry in db
         email: email,
-        password: password,
     });
+    const isMatchedPassword = bcrypt.compare(password,response.password);
 
-    if(response){
+    if(isMatchedPassword){
         const token = jwt.sign({
             id: response._id.toString()
         },JWT_SECRET);
