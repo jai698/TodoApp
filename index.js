@@ -7,10 +7,28 @@ const { default: mongoose } = require("mongoose");
 const JWT_SECRET = "dev";
 const PORT = 3001;
 const bcrypt = require("bcrypt");
+const {z} = require("zod");
 
 mongoose.connect("mongodb+srv://jai:kanishk49@cluster0.mdaxodf.mongodb.net/Todo");
 
 app.post('/signup',async function(req,res){
+
+    //input validation using zod
+    const reqBody = z.object({
+        name:z.string().max(20),
+        email:z.string().email().min(5).max(20),
+        password:z.string().password().max(20),
+    }
+    );
+
+    const parseData = reqBody.safeParse(req.body);
+    if(!parseData.success){
+        res.json({
+            message:"input validation failed",
+        })
+        return;
+    }
+    
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
