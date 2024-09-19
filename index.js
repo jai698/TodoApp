@@ -88,7 +88,7 @@ function auth(req,res,next){
 
 app.post('/todo',auth,async function(req,res){
     const userId = req.userId;
-    const title = req.title;
+    const title = req.body.title;
     await TodoModel.create({
         userId:userId,
         title:title,
