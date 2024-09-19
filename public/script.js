@@ -54,16 +54,40 @@ async function createTodo() {
     }
 }
 
+// async function showTodo() { 
+//     try {
+//         const response = await axios.get("http://localhost:3001/todos",{
+//             headers:{
+//                 token:localStorage.getItem("token")      
+//             }
+//         });
+//         localStorage.setItem("token",response.data.token);
+//         document.getElementById('populate').innerHTML = "todos:" + response.data.title;
+//         alert("todos fetched");
+//     } catch (error) {
+//         console.error('There was an error fetching the todos', error);
+//         alert("Failed to fetch todos");
+//     }
+// }
+
 async function showTodo() { 
     try {
-        const response = await axios.get("http://localhost:3001/todos",{
-            headers:{
-                token:localStorage.getItem("token")      
+        const response = await axios.get("http://localhost:3001/todos", {
+            headers: {
+                token: localStorage.getItem("token")      
             }
         });
-        localStorage.setItem("token",response.data.token);
-        document.querySelector(".populate").innerHTML = "todos:" + response.data.title;
-        alert("todos fetched");
+        
+        const todos = response.data.todos; // Get the todos array from the response
+        let todosList = ''; // Initialize an empty string to hold the list of todos
+
+        // Iterate over the todos array and concatenate the titles to the todosList string
+        todos.forEach(todo => {
+            todosList += `<li>${todo.title}</li>`; // Append each title inside an <li> element
+        });
+
+        document.getElementById('populate').innerHTML = `<ul>${todosList}</ul>`; // Display the todos in an unordered list
+        alert("Todos fetched");
     } catch (error) {
         console.error('There was an error fetching the todos', error);
         alert("Failed to fetch todos");

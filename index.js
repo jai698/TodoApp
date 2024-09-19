@@ -21,7 +21,7 @@ app.post('/signup',async function(req,res){
     //input validation using zod
     const reqBody = z.object({
         name:z.string().max(20),
-        email:z.string().email().min(5).max(20),
+        email:z.string().email().min(5).max(50),
         password:z.string().max(20),
     }
     );
@@ -30,6 +30,7 @@ app.post('/signup',async function(req,res){
     if(!parseData.success){
         res.json({
             message:"input validation failed",
+            errors: parseData.error.errors,
         })
         return;
     }
