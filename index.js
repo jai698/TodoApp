@@ -75,7 +75,7 @@ app.post('/login',async function(req,res){
 
 function auth(req,res,next){
     const token = req.headers.token;
-    const response = jwt.verify(token,JWT_SECRET);
+    const response = jwt.verify(token,JWT_SECRET); //jwt response which contains the payload which hv id from db that is __id in db
     if (response) {
         req.userId = response.id;
         next();
@@ -105,9 +105,9 @@ app.get('/todos',auth,async function(req,res){
     })
     res.json({
         todos,
-    })
+    })  
 });
 
 app.listen(PORT,function(){
     console.log(`server started at port: ${PORT}`);
-});
+}); 

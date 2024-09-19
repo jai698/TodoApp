@@ -35,10 +35,38 @@ async function login(){
     }
 }
 
-async function createTodo(){
+async function createTodo() {
+    const title = document.getElementById('entry-in-todo').value;
+    const token = localStorage.getItem('token'); 
 
+    try {
+        await axios.post('http://localhost:3001/todo', {
+            title: title, 
+        }, {
+            headers: {
+                token: token
+            }
+        });
+        alert("Todo Registered");
+    } catch (error) {
+        console.error('There was an error', error);
+        alert("Todo Register failed");
+    }
 }
 
-async function showTodo(){
-
+async function showTodo() { 
+    try {
+        const response = await axios.get("http://localhost:3001/todos",{
+            headers:{
+                token:localStorage.getItem("token")      
+            }
+        });
+        localStorage.setItem("token",response.data.token);
+        document.querySelector(".populate").innerHTML = "todos:" + response.data.title;
+        alert("todos fetched");
+    } catch (error) {
+        console.error('There was an error fetching the todos', error);
+        alert("Failed to fetch todos");
+    }
 }
+showTodo();
